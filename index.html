@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение астрологии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif; /* Изменен шрифт */
+            margin: 0;
+            background-color: #FFFFFF; /* Белый фон для всей страницы */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap; /* Для адаптивности */
+        }
+
+        nav {
+            display: flex;
+            gap: 30px; /* Отступы между кнопками */
+            flex-wrap: wrap; /* Для адаптивности */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #B3B3B3;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        .main {
+            padding: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .main__text {
+            font-size: 1rem; /* Изменено на rem для адаптивности */
+            color: #333;
+        }
+
+        .main__title {
+            font-size: 2.5rem; /* Изменено на rem для адаптивности */
+            color: #000;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .main__block {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .main__text-content {
+            padding-right: 20px;
+            flex: 2;
+            min-width: 300px; /* Минимальная ширина для адаптивности */
+        }
+
+        .main__photo {
+            flex: 1;
+            margin-left: -20px; /* Смещение влево */
+            min-width: 250px; /* Минимальная ширина для изображения */
+        }
+
+        .main__photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .main__info {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            flex-wrap: wrap; /* Для адаптивности */
+        }
+
+        .main__info-box {
+            text-align: center;
+            flex: 1; /* Распределение пространства */
+            min-width: 150px; /* Минимальная ширина для бокса */
+        }
+
+        .main_dig {
+            font-size: 2rem; /* Изменено на rem для адаптивности */
+            font-weight: bold;
+        }
+
+        .main__subtitle {
+            font-size: 1.7rem; /* Изменено на rem для адаптивности */
+            margin: 30px 0 15px 0;
+        }
+
+        .main__list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .main__item {
+            font-size: 1rem; /* Изменено на rem для адаптивности */
+            margin: 10px 0;
+        }
+
+        .number {
+            font-weight: bold; /* Жирный текст для номеров */
+        }
+
+        .program {
+            background-color: #E9D7D3;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .program__title {
+            font-size: 2rem; /* Изменено на rem для адаптивности */
+            margin-bottom: 30px;
+        }
+
+        .program__items {
+            margin-top: 20px;
+        }
+
+        .program__item {
+            font-size: 1.5rem; /* Изменено на rem для адаптивности */
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .divider {
+            height: 2px;
+            background-color: #000;
+            margin: 10px auto;
+            width: 80%;
+        }
+
+        .tariffs {
+            display: flex;
+            justify-content: space-between;
+            margin: 60px 0;
+            width: 100%; /* Занимает всю ширину */
+            flex-wrap: wrap; /* Для адаптивности */
+        }
+
+        .tariff-card {
+            background-color: #E9D7D3; /* Цвет фона для карточек тарифов */
+            flex: 1; /* Распределение доступного пространства */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px; /* Отступ между карточками */
+            min-width: 300px; /* Минимальная ширина карточек */
+        }
+
+        .tariff-title {
+            font-size: 1.8rem; /* Изменено на rem для адаптивности */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .tariff-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 10px 0;
+        }
+
+        .tariff-list li {
+            margin: 5px 0;
+            font-size: 1rem; /* Изменено на rem для адаптивности */
+        }
+
+        .study {
+            background-color: #B59797; /* Новый цвет фона секции с кнопками */
+            padding: 40px 0;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap; /* Для адаптивности */
+        }
+
+        .study__text {
+            flex: 2;
+            padding-left: 20px;
+            margin-left: 20px; /* Отступ слева для текста */
+            min-width: 250px; /* Минимальная ширина для текста */
+        }
+
+        .study__title {
+            font-size: 1.8rem; /* Изменено на rem для адаптивности */
+            margin-bottom: 20px;
+            color: #FFFFFF; /* Цвет заголовка в белый */
+        }
+
+        .study__photo {
+            flex: 1;
+            max-width: 150px; /* Ограничение ширины фотографии */
+            margin: 20px; /* Отступ для фото */
+        }
+
+        .study__photo img {
+            width: 100%; /* Установка ширины фотографии */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .study__list {
+            padding-left: 20px; /* Отступ для списка */
+            color: #FFFFFF; /* Цвет текста списка в белый */
+        }
+
+        .study__reviews {
+            margin: 20px 0; /* Отступ для текста о отзывах */
+            font-size: 1rem; /* Изменено на rem для адаптивности */
+            color: #FFFFFF; /* Белый цвет текста */
+            text-align: center; /* Выравнивание по центру */
+            font-weight: bold; /* Жирный текст */
+            border-bottom: 1px solid #FFFFFF; /* Подчеркивание */
+            padding-bottom: 10px; /* Отступ снизу */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #FFFFFF; /* Белый цвет для кнопок */
+            color: #6B4F4F; /* Темный текст */
+            text-decoration: none;
+            border: 1px solid #6B4F4F; /* Темная рамка */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 10px 0; /* Отступ между кнопками */
+            width: calc(100% - 20px); /* Ширина кнопок */
+            text-align: center; /* Центрирование текста внутри кнопок */
+        }
+
+        .button:hover {
+            background-color: #6B4F4F; /* Темный фон при наведении */
+            color: #FFFFFF; /* Белый текст при наведении */
+        }
+
+        .footer {
+            background-color: #3C2A2A; /* Новый цвет фона для нижнего блока */
+            color: #FFFFFF; /* Цвет текста */
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer__text {
+            margin: 10px 0;
+        }
+
+        .footer__link {
+            color: #FFF;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer__link:hover {
+            color: #FFD700; /* Цвет при наведении */
+        }
+
+        @media (max-width: 768px) {
+            .tariffs {
+                flex-direction: column; /* Вертикальная компоновка для мобильных устройств */
+            }
+
+            .tariff-card {
+                margin: 10px 0; /* Убираем боковые отступы на мобильных */
+                width: 100%; /* Полная ширина на мобильных */
+            }
+
+            .main__block {
+                flex-direction: column;
+            }
+
+            .study {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .study__text {
+                padding-left: 0;
+                margin-left: 0;
+                text-align: center; /* Центрирование текста */
+            }
+
+            .study__photo {
+                margin: 0 auto; /* Центрирование фотографии */
+                margin-bottom: 20px; /* Отступ снизу для мобильных */
+                max-width: 100%; /* Ограничение для мобильных устройств */
+            }
+
+            .study__reviews {
+                font-size: 0.9rem; /* Уменьшенный размер шрифта для мобильных */
+            }
+
+            .button {
+                width: 100%; /* Ширина кнопок на мобильных */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main__title {
+                font-size: 2rem; /* Уменьшение заголовка для маленьких экранов */
+            }
+
+            .main__subtitle {
+                font-size: 1.5rem; /* Уменьшение подзаголовка для маленьких экранов */
+            }
+
+            .main_dig {
+                font-size: 2rem; /* Уменьшение цифр для маленьких экранов */
+            }
+
+            .tariff-title {
+                font-size: 1.5rem; /* Уменьшение заголовка тарифов для маленьких экранов */
+            }
+
+            .program__title {
+                font-size: 1.5rem; /* Уменьшение заголовка программы для маленьких экранов */
+            }
+
+            .study__title {
+                font-size: 1.5rem; /* Уменьшение заголовка секции "После курса вы" для маленьких экранов */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#">Обо мне</a>
+                <a href="#">Мои услуги</a>
+                <a href="#">Обучение астрологии</a>
+                <a href="#">Марафоны</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main container">
+        <h2 class="main__title">Обучение астрологии</h2>
+        <div class="main__block">
+            <div class="main__text-content">
+                <p class="main__text">Подходит для нулевого уровня</p>
+                <p class="main__text">
+                    Программа обучения делится на 2 смысловых блока, каждый из которых длится около 3-3,5 месяцев.
+                    В каждом блоке по 14 лекций с практикой, домашними заданиями и обратной связью.
+                    Лекции проходят 1 раз в неделю в онлайн формате, их продолжительность составляет 2,5 часа.
+                </p>
+                <p class="main__text">Каждый ученик получает доступ к записи лекций, презентациям и методичкам. 
+                    После прохождения 2 блоков выдается сертификат.
+                </p>
+                <div class="main__info">
+                    <div class="main__info-box">
+                        <p class="main_dig">2</p>
+                        <p class="main__text">блока</p>
+                    </div>
+                    <div class="main__info-box">
+                        <p class="main_dig">14</p>
+                        <p class="main__text">Лекций в каждом</p>
+                    </div>
+                    <div class="main__info-box">
+                        <p class="main_dig">3,5</p>
+                        <p class="main__text">месяца длится 1 блок</p>
+                    </div>
+                </div>
+                <h3 class="main__subtitle">Курс будет полезен вам, если вы хотите:</h3>
+                <ol class="main__list">
+                    <li class="main__item"><span class="number">1.</span> Освоить новую профессию и уже в процессе обучения начать зарабатывать</li>
+                    <li class="main__item"><span class="number">2.</span> Получить любимое дело и в процессе обучения обрести единомышленников</li>
+                    <li class="main__item"><span class="number">3.</span> Напрямую влиять на свой доход и работать вне графика, самостоятельно управляя своим временем</li>
+                    <li class="main__item"><span class="number">4.</span> Использовать полученные знания для улучшения качества своей жизни и близких</li>
+                </ol>
+            </div>
+            <div class="main__photo">
+                <img src="./img/photo1 (1).png" alt="photo1">
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="container">
+            <div class="program__title">Программа обучения</div>
+            <div class="divider"></div>
+            <div class="program__items">
+                <div class="program__item">Первый блок: +</div>
+                <div class="divider"></div>
+                <div class="program__item">Второй блок: +</div>
+                <div class="divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tariffs container">
+        <h2 class="main__title">Тарифы:</h2>
+        <div class="tariffs">
+            <div class="tariff-card">
+                <h3 class="tariff-title">Стандарт</h3>
+                <ul class="tariff-list">
+                    <li>14 уроков в записи</li>
+                    <li>Презентации к лекциям, методички</li>
+                    <li>3,5 месяцев доступа во время обучения и 1 месяц после</li>
+                    <li>Домашние задания</li>
+                    <li>Чат единомышленников</li>
+                    <li>Обратная связь, ответы на вопросы в чате</li>
+                    <li>Сертификат, подтверждающий квалификацию</li>
+                </ul>
+                <p>Стоимость 1 блока: 19990 рублей *</p>
+                <a href="#" class="button">Записаться</a>
+            </div>
+            <div class="tariff-card">
+                <h3 class="tariff-title">Максимум</h3>
+                <ul class="tariff-list">
+                    <li>14 онлайн-лекций + их запись</li>
+                    <li>Презентации к лекциям, методички</li>
+                    <li>3,5 месяцев доступа во время обучения и 2 месяца после</li>
+                    <li>Домашние задания</li>
+                    <li>Чат единомышленников</li>
+                    <li>Обратная связь, ответы на вопросы в чате</li>
+                    <li>Сертификат, подтверждающий квалификацию</li>
+                </ul>
+                <p>Стоимость 1 блока: 24990 рублей *</p>
+                <a href="#" class="button">Записаться</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="study">
+        <div class="container">
+            <div class="study__photo">
+                <img src="./img/photo2.png" alt="study_photo">
+            </div>
+            <div class="study__text">
+                <h2 class="study__title">После курса вы:</h2>
+                <ol class="study__list">
+                    <li>Сможете консультировать по темам: личная жизнь, совместимость, финансы, поиск предназначения, здоровья и детского гороскопа.</li>
+                    <li>Будете владеть навыками работы в профессиональных астрологических программах.</li>
+                    <li>Отобьете стоимость обучения за первые несколько месяцев и повысите осознанность и качество своей жизни.</li>
+                </ol>
+                <div class="study__reviews">
+                    Посмотреть отзывы об обучении и результаты учеников
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="#" class="button">Перечень моих услуг</a>
+                    <a href="#" class="button">Марафоны для вас</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer__text">Анастасия Вячеславовна Шевченко</p>
+            <div>
+                <a href="#" class="footer__link">На главную</a>
+                <a href="#" class="footer__link">Design by @kemfetka
